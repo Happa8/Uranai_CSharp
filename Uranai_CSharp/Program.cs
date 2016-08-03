@@ -94,6 +94,10 @@ namespace Uranai_CSharp
 				Console.WriteLine("See you again");
 
 				System.Threading.Thread.Sleep(2000);
+			}else
+			{
+				Console.WriteLine("正しい文字を入力してください");
+				askContinue();
 			}
 		}
 	}
