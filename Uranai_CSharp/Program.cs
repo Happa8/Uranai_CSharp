@@ -46,11 +46,31 @@ namespace Uranai_CSharp
 			Console.WriteLine("ex: 山田 太郎 → やまだたろう → ああああおう → 111153");
 
 			//数値入力
+			FIRSTNAME:
 			Console.WriteLine("一人目の数値を入力してください");
-			nameNumber_1 = int.Parse(Console.ReadLine());
+			string nameNumber_1S = Console.ReadLine();
+			if (System.Text.RegularExpressions.Regex.IsMatch(nameNumber_1S, @"^[0-5]+$"))
+			{
+				nameNumber_1 = int.Parse(nameNumber_1S);
+			}
+			else
+			{
+				Console.WriteLine("0~5の数字を入力してください");
+				goto FIRSTNAME;
+			}
 
+		SECONDNAME:
 			Console.WriteLine("二人目の数値を入力してください");
-			nameNumber_2 = int.Parse(Console.ReadLine());
+			string nameNumber_2S = Console.ReadLine();
+			if (System.Text.RegularExpressions.Regex.IsMatch(nameNumber_2S, @"^[0-5]+$"))
+			{
+				nameNumber_2 = int.Parse(nameNumber_2S);
+			}
+			else
+			{
+				Console.WriteLine("0~5の数字を入力してください");
+				goto SECONDNAME;
+			}
 
 			funcCalc();
 		}
