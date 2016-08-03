@@ -45,9 +45,10 @@ namespace Uranai_CSharp
 			Console.WriteLine("\tん=0");
 			Console.WriteLine("ex: 山田 太郎 → やまだたろう → ああああおう → 111153");
 
-			//数値入力
-			FIRSTNAME:
+		//数値入力
+		FIRSTNAME:
 			Console.WriteLine("一人目の数値を入力してください");
+			Console.Write(">");
 			string nameNumber_1S = Console.ReadLine();
 			if (System.Text.RegularExpressions.Regex.IsMatch(nameNumber_1S, @"^[0-5]+$"))
 			{
@@ -59,8 +60,9 @@ namespace Uranai_CSharp
 				goto FIRSTNAME;
 			}
 
-			SECONDNAME:
+		SECONDNAME:
 			Console.WriteLine("二人目の数値を入力してください");
+			Console.Write(">");
 			string nameNumber_2S = Console.ReadLine();
 			if (System.Text.RegularExpressions.Regex.IsMatch(nameNumber_2S, @"^[0-5]+$"))
 			{
