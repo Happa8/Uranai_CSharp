@@ -13,8 +13,6 @@ namespace Uranai_CSharp
 		static int nameNumber_2;
 		//計算結果
 		static double answer;
-		//Enter待ち用
-		static int enter;
 		//繰り返し用
 		static int count;
 
@@ -44,6 +42,8 @@ namespace Uranai_CSharp
 			Console.WriteLine("\tう=3");
 			Console.WriteLine("\tえ=4");
 			Console.WriteLine("\tお=5");
+			Console.WriteLine("\tん=0");
+			Console.WriteLine("ex: 山田 太郎 → やまだたろう → ああああおう → 111153");
 
 			//数値入力
 			Console.WriteLine("一人目の数値を入力してください");
@@ -67,6 +67,7 @@ namespace Uranai_CSharp
 
 			//パーセンテージ化
 			answer *= 100;
+			answer = Math.Round(answer);
 
 			//結果発表
 			Console.WriteLine("二人の相性は" + answer + "％です\n");
@@ -91,6 +92,8 @@ namespace Uranai_CSharp
 			{
 				Console.WriteLine("Thank you for using this app");
 				Console.WriteLine("See you again");
+
+				System.Threading.Thread.Sleep(2000);
 			}
 		}
 	}
