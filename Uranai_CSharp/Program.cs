@@ -59,7 +59,7 @@ namespace Uranai_CSharp
 				goto FIRSTNAME;
 			}
 
-		SECONDNAME:
+			SECONDNAME:
 			Console.WriteLine("二人目の数値を入力してください");
 			string nameNumber_2S = Console.ReadLine();
 			if (System.Text.RegularExpressions.Regex.IsMatch(nameNumber_2S, @"^[0-5]+$"))
