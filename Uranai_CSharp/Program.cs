@@ -124,7 +124,6 @@ namespace Uranai_CSharp
 							break;
 					}
 				}
-				Console.WriteLine(answerS);
 				nameNumber_1 = int.Parse(answerS);
 			}
 			else
@@ -168,7 +167,6 @@ namespace Uranai_CSharp
 							break;
 					}
 				}
-				Console.WriteLine(answerS);
 				nameNumber_2 = int.Parse(answerS);
 			}
 			else
