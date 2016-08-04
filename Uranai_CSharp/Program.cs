@@ -20,7 +20,7 @@ namespace Uranai_CSharp
 		static void Main(string[] args)
 		{
 			descriptionFirst();
-			funcScanStr();
+			switchMode();
 		}
 
 		static void descriptionFirst()
@@ -31,6 +31,34 @@ namespace Uranai_CSharp
 			Console.WriteLine("【二人の名前を数値化し、相性を見る】");
 			Console.WriteLine("という占いです。");
 			Console.WriteLine("以下の指示に従っていただけばいけるはずです");
+		}
+
+		static void switchMode()
+		{
+			Console.WriteLine("名前入力モードを選択してください");
+			Console.WriteLine("\t1:数値入力モード\n\t2:ローマ字入力モード\n\t3:ひらがな入力モード");
+			Console.Write("Mode>");
+			string ans = Console.ReadLine();
+			if(Regex.IsMatch(ans, @"[1-3]"))
+			{
+				switch (ans)
+				{
+					case "1":
+						funcScan();
+						break;
+					case "2":
+						funcScanStr();
+						break;
+					case "3":
+						funcScanHira();
+						break;
+				}
+			}
+			else
+			{
+				Console.WriteLine("入力された値が不正です\n入力しなおしてください\n");
+				switchMode();
+			}
 		}
 
 		//実際の計算及び数値入力
@@ -178,6 +206,54 @@ namespace Uranai_CSharp
 			funcCalc();
 		}
 
+		static int convertHiraganaToNum(string name)
+		{
+			name = Regex.Replace(name, @"[あかがさざただなはばぱまやらわ]", "1");
+			name = Regex.Replace(name, @"[いきぎしじちぢにひびぴみりゐ]", "2");
+			name = Regex.Replace(name, @"[うくぐすずつづぬふぶぷむゆる]", "3");
+			name = Regex.Replace(name, @"[えけげせぜてでねへべぺめれゑ]", "4");
+			name = Regex.Replace(name, @"[おこごそぞとどのほぼぽもよろを]", "5");
+			name = Regex.Replace(name, @"ん", "0");
+			name = Regex.Replace(name, @"[ぁぃぅぇぉっゃゅょ]", "");
+			int res = int.Parse(name);
+			return res;
+		}
+
+		static void funcScanHira()
+		{
+			Console.WriteLine("占う二人の名前をひらがな入力してください");
+
+		FIRSTNAME:
+			Console.WriteLine("一人目の名前を入力してください");
+			Console.Write(">");
+			string name1S = Console.ReadLine();
+			if(Regex.IsMatch(name1S, @"^[ぁ-ゞ]+$"))
+			{
+				nameNumber_1 = convertHiraganaToNum(name1S);
+			}
+			else
+			{
+				Console.WriteLine("入力された値が不正です\n入力しなおしてください\n");
+				goto FIRSTNAME;
+			}
+
+		SECONDNAME:
+			Console.WriteLine("二人目の名前を入力してください");
+			Console.Write(">");
+			string name2S = Console.ReadLine();
+			if (Regex.IsMatch(name2S, @"^[ぁ-ゞ]+$"))
+			{
+				nameNumber_2 = convertHiraganaToNum(name2S);
+			}
+			else
+			{
+				Console.WriteLine("入力された値が不正です\n入力しなおしてください\n");
+				goto SECONDNAME;
+			}
+
+			funcCalc();
+		}
+
 		static void funcCalc()
 		{
 			//計算
@@ -210,7 +286,7 @@ namespace Uranai_CSharp
 			if (count == 0)
 			{
 				Console.WriteLine("それじゃ、再び始めますね\n");
-				funcScanStr);
+				switchMode();
 			}else if (count == 1)
 			{
 				Console.WriteLine("Thank you for using this app");
