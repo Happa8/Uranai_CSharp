@@ -35,7 +35,7 @@ namespace Uranai_CSharp
 			Console.WriteLine("\t1:数値入力モード\n\t2:ローマ字入力モード\n\t3:ひらがな入力モード");
 			Console.Write("Mode>");
 			string ans = Console.ReadLine();
-			if(Regex.IsMatch(ans, @"[1-3]"))
+			if(Regex.IsMatch(ans, @"^[1-3]$"))
 			{
 				switch (ans)
 				{
