@@ -210,7 +210,7 @@ namespace Uranai_CSharp
 			if (count == 0)
 			{
 				Console.WriteLine("それじゃ、再び始めますね\n");
-				funcScan();
+				funcScanStr);
 			}else if (count == 1)
 			{
 				Console.WriteLine("Thank you for using this app");
