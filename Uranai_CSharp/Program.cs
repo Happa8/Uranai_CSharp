@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Uranai_CSharp
 {
@@ -19,7 +20,7 @@ namespace Uranai_CSharp
 		static void Main(string[] args)
 		{
 			descriptionFirst();
-			funcScan();
+			funcScanStr();
 		}
 
 		static void descriptionFirst()
@@ -71,6 +72,108 @@ namespace Uranai_CSharp
 			else
 			{
 				Console.WriteLine("0~5の数字を入力してください");
+				goto SECONDNAME;
+			}
+
+			funcCalc();
+		}
+
+		//入力ローマ字版
+		static void funcScanStr()
+		{
+			Console.WriteLine("占う二人の名前をローマ字で入力してください");
+			Console.WriteLine("------注意点------");
+			Console.WriteLine("・苗字と名前の間にスペースを入れないでください");
+			Console.WriteLine("・「ん」は「nn」と入力してください");
+			Console.WriteLine("・半角英字で入力してください");
+			Console.WriteLine("・小文字で入力してください");
+			Console.WriteLine("ex: 金田一耕助 → kinndaichikousuke");
+
+		FIRSTNAME:
+			Console.WriteLine("一人目の名前を入力してください");
+			Console.Write(">");
+			string name1S = Console.ReadLine();
+			if(Regex.IsMatch(name1S, @"^[A-Za-z]+$"))
+			{
+				MatchCollection RegixCollection1 = Regex.Matches(name1S, @"([aiueo]|nn)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+				string answerS = "";
+				foreach (Match tmp in RegixCollection1)
+				{
+					switch (tmp.Value.ToString())
+					{
+						case "a":
+							answerS = answerS + "1";
+							break;
+						case "i":
+							answerS = answerS + "2";
+							break;
+						case "u":
+							answerS = answerS + "3";
+							break;
+						case "e":
+							answerS = answerS + "4";
+							break;
+						case "o":
+							answerS = answerS + "5";
+							break;
+						case "nn":
+							answerS = answerS + "0";
+							break;
+						default:
+							answerS = answerS + "0";
+							break;
+					}
+				}
+				Console.WriteLine(answerS);
+				nameNumber_1 = int.Parse(answerS);
+			}
+			else
+			{
+				Console.WriteLine("入力された値が不正です\n入力しなおしてください\n");
+				goto FIRSTNAME;
+			}
+
+		SECONDNAME:
+			Console.WriteLine("二人目の名前を入力してください");
+			Console.Write(">");
+			string name2S = Console.ReadLine();
+			if (Regex.IsMatch(name2S, @"^[A-Za-z]+$"))
+			{
+				MatchCollection RegixCollection2 = Regex.Matches(name2S, @"([aiueo]|nn)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+				string answerS = "";
+				foreach (Match tmp in RegixCollection2)
+				{
+					switch (tmp.Value.ToString())
+					{
+						case "a":
+							answerS = answerS + "1";
+							break;
+						case "i":
+							answerS = answerS + "2";
+							break;
+						case "u":
+							answerS = answerS + "3";
+							break;
+						case "e":
+							answerS = answerS + "4";
+							break;
+						case "o":
+							answerS = answerS + "5";
+							break;
+						case "nn":
+							answerS = answerS + "0";
+							break;
+						default:
+							answerS = answerS + "0";
+							break;
+					}
+				}
+				Console.WriteLine(answerS);
+				nameNumber_2 = int.Parse(answerS);
+			}
+			else
+			{
+				Console.WriteLine("入力された値が不正です\n入力しなおしてください\n");
 				goto SECONDNAME;
 			}
 
