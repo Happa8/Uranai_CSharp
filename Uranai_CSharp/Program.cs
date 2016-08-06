@@ -204,13 +204,18 @@ namespace Uranai_CSharp
 
 		static int convertHiraganaToNum(string name)
 		{
+			name = Regex.Replace(name, @".[ぁゃゎ]", "1");
+			name = Regex.Replace(name, @".ぃ", "2");
+			name = Regex.Replace(name, @".[ぅゅ]", "3");
+			name = Regex.Replace(name, @".ぇ", "4");
+			name = Regex.Replace(name, @".[ぉょ]", "5");
+			name = Regex.Replace(name, @"っ", "");
 			name = Regex.Replace(name, @"[あかがさざただなはばぱまやらわ]", "1");
 			name = Regex.Replace(name, @"[いきぎしじちぢにひびぴみりゐ]", "2");
 			name = Regex.Replace(name, @"[うくぐすずつづぬふぶぷむゆる]", "3");
 			name = Regex.Replace(name, @"[えけげせぜてでねへべぺめれゑ]", "4");
 			name = Regex.Replace(name, @"[おこごそぞとどのほぼぽもよろを]", "5");
 			name = Regex.Replace(name, @"ん", "0");
-			name = Regex.Replace(name, @"[ぁぃぅぇぉっゃゅょ]", "");
 			int res = int.Parse(name);
 			return res;
 		}
